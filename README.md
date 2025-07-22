@@ -161,7 +161,7 @@ The system includes a comprehensive evaluation suite (`tests/evaluator.py`) test
 
 **Speed Optimizations:**
 - Fuzzy matching as primary filter (sub-second response)
-- LLM calls only for uncertain cases (~20% of queries)
+- LLM calls only for uncertain cases
 - Caching for nickname generation
 - Configurable thresholds for speed/accuracy trade-offs
 
@@ -183,14 +183,13 @@ The system includes a comprehensive evaluation suite (`tests/evaluator.py`) test
 
 **Current Limitations:**
 - English-centric (though handles some cultural variations)
-- Requires OpenAI API key for full functionality
 - Limited context understanding beyond name matching
 
 
 **Planned Enhancements:**
 - Multi-language support with translation
 - Contextual matching (age, occupation, location)
-- Integration with additional LLM providers
+- Integration with additional LLM / Agents
 - Real-time confidence calibration based on feedback
 - Automated external enrichment: Plan for web-based attribute enrichment using trusted sources (Wikipedia, search APIs, LinkedIn, etc.) to disambiguate unclear matches. This would include a query generator, API retrieval layer, NER-based attribute extraction, and comparison module. Enrichment would be triggered for medium- or low-confidence matches and would be logged with full traceability.
 
@@ -222,7 +221,20 @@ In some cases, key details such as middle names, date of birth, or occupation ma
 5. **Fallback**
    - If enrichment fails or yields ambiguous data, case is flagged for manual review with enrichment log attached
 
-This enrichment plan is designed to integrate with the existing confidence tiering system and further reduce false positives while maintaining high regulatory compliance standards.
+
+In future iterations, this enrichment process could be handled by an AI agent framework (e.g. LangChain Agents or AutoGen), where:
+- The agent receives a task like “Find more information about John A. Smith born 1972 who’s a lawyer.”
+- It uses tools (e.g. Google Search, Wikipedia API, LinkedIn API) to retrieve data.
+- It applies reasoning chains to compare external info to the input profile.
+- It produces a final judgment and justification (e.g. “Match unlikely: occupation mismatch”).
+ 
+Sketched pipeline
+```bash
+[User Profile] ─┬─> Agent ─> Query Tool -> Search API -> NER -> Reasoning -> Confidence Adjustment
+[Article Info] ─┘
+```
+
+This enrichment plan is designed to integrate with the existing confidence tiering system and further reduce false positives while maintaining high regulatory compliance standards. In future iterations, this enrichment logic could be encapsulated in an AI agent capable of autonomously researching missing attributes using a suite of trusted tools and APIs—offloading manual analyst work while maintaining traceable, explainable outputs.
 
 ## Project Structure
 ```
