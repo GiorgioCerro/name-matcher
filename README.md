@@ -95,8 +95,43 @@ python run.py --name "Chloe Kelly" --filepath tests/test_data/sample_article_1.t
 ### Running Evaluations
 ```bash
 # Run synthetic test suite
-python evaluation/evaluator.py
+python -m tests.evaluator
 ```
+
+This is the expected output:
+============================================================
+NAME MATCHING SYSTEM EVALUATION RESULTS
+============================================================
+Overall Accuracy: 85.71%
+Precision: 85.71%
+Recall: 100.00%
+F1 Score: 92.31%
+
+Confusion Matrix:
+True Positives: 6
+False Positives: 1
+False Negatives: 0
+True Negatives: 0
+
+Results by Case Type:
+  exact_match: 1/1 (100.00%)
+  nickname: 1/1 (100.00%)
+  initials: 1/1 (100.00%)
+  middle_as_first: 1/1 (100.00%)
+  false_positive: 0/1 (0.00%)
+  hyphenated: 1/1 (100.00%)
+  cultural_variation: 1/1 (100.00%)
+
+Detailed Results:
+✓ Case 1 (exact_match): 'John Smith' -> Expected: True, Predicted: True (Method: fuzzy_high_confidence)
+✓ Case 2 (nickname): 'William Johnson' -> Expected: True, Predicted: True (Method: fuzzy_high_confidence)
+✓ Case 3 (initials): 'Mary Elizabeth Anderson' -> Expected: True, Predicted: True (Method: fuzzy_high_confidence)
+✓ Case 4 (middle_as_first): 'James Robert Wilson' -> Expected: True, Predicted: True (Method: fuzzy_high_confidence)
+✗ Case 5 (false_positive): 'Michael Brown' -> Expected: False, Predicted: True (Method: fuzzy_high_confidence)
+    Explanation: High confidence match (score: 88.6) between variant 'michael brown' and article name 'michelle brown'
+    Article names found: ['michelle brown']
+✓ Case 6 (hyphenated): 'Sarah Johnson-Smith' -> Expected: True, Predicted: True (Method: fuzzy_high_confidence)
+✓ Case 7 (cultural_variation): 'José María González' -> Expected: True, Predicted: True (Method: fuzzy_high_confidence)
 
 ### Evaluation Framework
 The system includes a comprehensive evaluation suite (`evaluation/evaluator.py`) testing:
