@@ -77,9 +77,12 @@ python run.py --name "Alex Brown" --filepath article.txt --output json
 # Save detailed report
 python run.py --name "Sarah Wilson" --filepath article.txt --save-report analysis_report.txt
 
-# These are the three examples I ran with the available data in this repo:
+# These are the three examples I ran with the available data in this repo.
+# Partial match
 python run.py --name "Johnny Christopher Depp II" --filepath tests/test_data/sample_article_3.txt --save-report tests/test_reports/report_sample_article_3.txt
+# No match
 python run.py --name "Jannik Sinner" --filepath tests/test_data/sample_article_2.txt --save-report tests/test_reports/report_sample_article_2.txt
+# Perfect match
 python run.py --name "Chloe Kelly" --filepath tests/test_data/sample_article_1.txt --save-report tests/test_reports/sample_article_1.txt 
 ```
 
