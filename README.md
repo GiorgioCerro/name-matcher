@@ -96,8 +96,8 @@ python run.py --name "Chloe Kelly" --filepath tests/test_data/sample_article_1.t
 ```bash
 # Run synthetic test suite
 python -m tests.evaluator
-```
 
+"""
 This is the expected output:
 ============================================================
 NAME MATCHING SYSTEM EVALUATION RESULTS
@@ -132,6 +132,8 @@ Detailed Results:
     Article names found: ['michelle brown']
 ✓ Case 6 (hyphenated): 'Sarah Johnson-Smith' -> Expected: True, Predicted: True (Method: fuzzy_high_confidence)
 ✓ Case 7 (cultural_variation): 'José María González' -> Expected: True, Predicted: True (Method: fuzzy_high_confidence)
+"""
+```
 
 ### Evaluation Framework
 The system includes a comprehensive evaluation suite (`evaluation/evaluator.py`) testing:
