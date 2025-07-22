@@ -136,7 +136,7 @@ Detailed Results:
 ```
 
 ### Evaluation Framework
-The system includes a comprehensive evaluation suite (`evaluation/evaluator.py`) testing:
+The system includes a comprehensive evaluation suite (`tests/evaluator.py`) testing:
 
 - **Exact matches**: Direct name appearances
 - **Nickname variations**: William/Bill, James/Jim
