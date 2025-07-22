@@ -44,7 +44,7 @@ def get_best_fuzzy_match(name_variants: set[str], article_names: list[str]) -> t
     return best_score, best_variant, best_match, best_scores
 
 def match_name_against_article(name_variants: set[str], article_names: list[str], 
-                             high_threshold: float = 85, low_threshold: float = 70):
+                             high_threshold: float = 85, low_threshold: float = 20):
     """
     Enhanced matching with tiered thresholds and better decision logic.
     
@@ -111,27 +111,27 @@ def llm_name_match_fallback(name_variants: set[str], article_names: list[str],
     limited_article_names = article_names[:20]
     
     prompt = f"""
-You are helping a financial analyst determine if a news article refers to a specific person for regulatory compliance.
+    You are helping a financial analyst determine if a news article refers to a specific person for regulatory compliance.
 
-TARGET PERSON'S POSSIBLE NAMES: {limited_variants}
-NAMES MENTIONED IN ARTICLE: {limited_article_names}
+    TARGET PERSON'S POSSIBLE NAMES: {limited_variants}
+    NAMES MENTIONED IN ARTICLE: {limited_article_names}
 
-CONTEXT:
-- The fuzzy matching system gave a score of {fuzzy_score:.1f}/100 
-- Best fuzzy match was between "{best_variant}" and "{best_match}"
-- This is for regulatory screening, so false negatives (missing a real match) are more costly than false positives
+    CONTEXT:
+    - The fuzzy matching system gave a score of {fuzzy_score:.1f}/100 
+    - Best fuzzy match was between "{best_variant}" and "{best_match}"
+    - This is for regulatory screening, so false negatives (missing a real match) are more costly than false positives
 
-Consider:
-1. Cultural name variations (nicknames, different name orders)
-2. Spelling variations and typos
-3. Use of initials or partial names
-4. Same person might be referred to differently in the article
+    Consider:
+    1. Cultural name variations (nicknames, different name orders)
+    2. Spelling variations and typos
+    3. Use of initials or partial names
+    4. Same person might be referred to differently in the article
 
-Respond in exactly this format:
-MATCH: yes/no
-CONFIDENCE: high/medium/low
-EXPLANATION: [clear reasoning for your decision]
-"""
+    Respond in exactly this format:
+    MATCH: yes/no
+    CONFIDENCE: high/medium/low
+    EXPLANATION: [clear reasoning for your decision]
+    """
 
     try:
         response = llm.invoke(prompt).strip()

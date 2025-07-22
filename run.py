@@ -283,7 +283,6 @@ class NameMatchingCLI:
                 variants, article_names, 
                 high_threshold=args.threshold
             )
-            
             # Format output
             if args.output == "json":
                 output = self.format_json_output(args.name, result, variants, article_names)

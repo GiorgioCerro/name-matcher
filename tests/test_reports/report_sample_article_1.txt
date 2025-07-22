@@ -1,0 +1,23 @@
+======================================================================
+ADVERSE MEDIA NAME MATCHING RESULT
+======================================================================
+Target Name: Chloe Kelly
+Analysis Date: 2025-07-22 14:24:57
+
+Result: MATCH FOUND 🟢
+Confidence: HIGH
+Method: Fuzzy High Confidence
+Match Score: 100.0/100
+
+Match Details:
+  • Matched Name in Article: 'c. kelly'
+  • Matched Name Variant: 'c. kelly'
+Explanation:
+  High confidence match (score: 100.0) between variant 'c. kelly' and article name 'c. kelly'
+
+Risk Assessment:
+  🔴 HIGH RISK - Strong indication this article refers to the target individual
+
+Recommendation:
+  📋 MANUAL REVIEW RECOMMENDED
+     An analyst should verify this match for regulatory compliance.

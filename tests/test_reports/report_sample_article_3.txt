@@ -1,0 +1,22 @@
+======================================================================
+ADVERSE MEDIA NAME MATCHING RESULT
+======================================================================
+Target Name: Johnny Christopher Depp II
+Analysis Date: 2025-07-22 14:46:33
+
+Result: MATCH FOUND 🟡
+Confidence: MEDIUM
+Method: Llm Disambiguation
+
+Match Details:
+  • Matched Name in Article: 'although depp'
+  • Matched Name Variant: 'c depp'
+Explanation:
+  [There are multiple names in the article that could potentially refer to Johnny Depp, such as "John c depp" and "johnny depp", but none of them are exact matches. However, the best fuzzy match was between "c depp" and "although depp", which could likely be a reference to Johnny Depp's middle name and a mention of him in the article. Additionally, the article mentions a film directed by Oliver Stone, who Johnny Depp has worked with in the past. While there is no clear and exact match, the combination of potential references to Depp and his past work leads to a medium level of confidence that the article is referring to him.]
+
+Risk Assessment:
+  🟡 MEDIUM RISK - Possible match, recommend manual review
+
+Recommendation:
+  📋 MANUAL REVIEW RECOMMENDED
+     An analyst should verify this match for regulatory compliance.

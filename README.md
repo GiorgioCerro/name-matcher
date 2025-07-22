@@ -76,7 +76,14 @@ python run.py --name "Alex Brown" --filepath article.txt --output json
 
 # Save detailed report
 python run.py --name "Sarah Wilson" --filepath article.txt --save-report analysis_report.txt
+
+# These are the three examples I ran with the available data in this repo:
+python run.py --name "Johnny Christopher Depp II" --filepath tests/test_data/sample_article_3.txt --save-report tests/test_reports/report_sample_article_3.txt
+python run.py --name "Jannik Sinner" --filepath tests/test_data/sample_article_2.txt --save-report tests/test_reports/report_sample_article_2.txt
+python run.py --name "Chloe Kelly" --filepath tests/test_data/sample_article_1.txt --save-report tests/test_reports/sample_article_1.txt 
 ```
+
+
 
 ### Output Interpretation
 - **🟢 HIGH CONFIDENCE**: Strong algorithmic decision
@@ -142,11 +149,43 @@ The system includes a comprehensive evaluation suite (`evaluation/evaluator.py`)
 - Requires OpenAI API key for full functionality
 - Limited context understanding beyond name matching
 
+
 **Planned Enhancements:**
 - Multi-language support with translation
 - Contextual matching (age, occupation, location)
 - Integration with additional LLM providers
 - Real-time confidence calibration based on feedback
+- Automated external enrichment: Plan for web-based attribute enrichment using trusted sources (Wikipedia, search APIs, LinkedIn, etc.) to disambiguate unclear matches. This would include a query generator, API retrieval layer, NER-based attribute extraction, and comparison module. Enrichment would be triggered for medium- or low-confidence matches and would be logged with full traceability.
+
+### Enrichment Strategy (Part 2 Plan)
+
+In some cases, key details such as middle names, date of birth, or occupation may be missing from the article but are crucial for disambiguation. To handle this, we propose an automated enrichment pipeline that performs web-based research to retrieve additional context. The strategy includes:
+
+1. **Trigger Conditions**
+   - Medium or low confidence matches
+   - Lack of disambiguating metadata in article
+   - Presence of known profile attributes (DOB, occupation)
+
+2. **Data Sources**
+   - Wikipedia/Wikidata APIs
+   - Google/Bing Search APIs
+   - LinkedIn (via APIs)
+   - Public people directories and news aggregators
+
+3. **Enrichment Modules**
+   - **Query Generator**: Builds search queries from profile info
+   - **API/Data Fetcher**: Collects relevant content using search and knowledge APIs
+   - **Attribute Extractor**: Extracts DOB, occupation, affiliations, etc. using NER or LLMs
+   - **Comparator**: Matches extracted attributes to input profile to assess match likelihood
+
+4. **Explainability**
+   - All enrichment attempts logged with sources and decision reasoning
+   - Used to upgrade or downgrade match confidence with clear justifications
+
+5. **Fallback**
+   - If enrichment fails or yields ambiguous data, case is flagged for manual review with enrichment log attached
+
+This enrichment plan is designed to integrate with the existing confidence tiering system and further reduce false positives while maintaining high regulatory compliance standards.
 
 ## Project Structure
 ```
